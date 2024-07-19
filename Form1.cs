@@ -70,7 +70,7 @@ namespace CografiBilgiSystem
         private void map_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
             string selectionCar = (string)item.Tag;
-            foreach (Arac arac in list)
+            foreach (Arac arac in Arac.AracList)
             {
                 if (selectionCar.Equals(arac.Plaka))
                 {
@@ -103,21 +103,31 @@ namespace CografiBilgiSystem
             string from = addFrom.Text;
             string to = addTo.Text;
             string enlem = addEnlem.Text;
-            string boylam = addBoylam.Text;
-            float Enlem = float.Parse(enlem);
-            float Boylam = float.Parse(boylam);
-            Arac.AddArac(new Arac(plaka, type, from, to, new PointLatLng(Enlem, Boylam)));
-            addPlaka.Text = "";
-            addType.Text = "";
-            addFrom.Text = "";
-            addTo.Text = "";
-            addEnlem.Text = "";
-            addBoylam.Text = "";
+            string boylam = addBoylam.Text;           
+            if (float.TryParse(enlem, out float Enlem) && float.TryParse(boylam, out float Boylam))
+            {               
+                Arac.AddArac(new Arac(plaka, type, from, to, new PointLatLng(Enlem, Boylam)));
+                addPlaka.Text = "";
+                addType.Text = "";
+                addFrom.Text = "";
+                addTo.Text = "";
+                addEnlem.Text = "";
+                addBoylam.Text = "";
+            }
+            else
+            {               
+                MessageBox.Show("Please enter valid numeric values for Enlem and Boylam.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         private void button3_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
             form2.Show();
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

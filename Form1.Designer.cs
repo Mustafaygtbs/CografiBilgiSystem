@@ -1,4 +1,6 @@
-﻿namespace CografiBilgiSystem
+﻿using System;
+
+namespace CografiBilgiSystem
 {
     partial class Form1
     {
@@ -489,6 +491,8 @@
             this.PerformLayout();
 
         }
+
+       
 
         #endregion
 
